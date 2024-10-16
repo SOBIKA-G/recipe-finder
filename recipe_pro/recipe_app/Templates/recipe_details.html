@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.title }}</title>
+    <style>
+        /* Internal CSS for recipe detail page */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f6f2; /* Match home page background */
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #f08a5d; /* Light orange */
+            color: #fff;
+            padding: 1rem 0;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            float: left;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+            background-color: #ff6f61; /* Coral color */
+            border-radius: 5px;
+        }
+        header a:hover {
+            background-color: #e65c4f;
+        }
+        .recipe-detail {
+            background-color: #fff;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .recipe-detail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .recipe-detail h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #333;
+        }
+        .recipe-detail p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 10px 0;
+        }
+        .recipe-detail strong {
+            color: #f08a5d; /* Light orange */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="{% url 'index' %}">Back to Home</a></h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="recipe-detail">
+            <h1>{{ recipe.title }}</h1>
+            <img src="{{ recipe.image_url }}" alt="Recipe Image">
+            <p><strong>Description:</strong> {{ recipe.description }}</p>
+            <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+            <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+            <p><strong>Preparation Time:</strong> {{ recipe.prep_time }}</p>
+        </div>
+    </div>
+</body>
+</html>
