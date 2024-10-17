@@ -1,24 +1,24 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.8
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-# Set environment variables to prevent Python from writing .pyc files and buffering stdout
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Set environment variables to prevent .pyc files and buffered output
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Set the working directory inside the container
-WORKDIR /app  # Use /app as the working directory
+# Set the working directory in the container to /app
+WORKDIR /app
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+# Copy the requirements.txt file into the container
+COPY requirements.txt /app/
 
-# Install the dependencies specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install any dependencies
+RUN pip install -r requirements.txt
 
-# Copy the entire application code into the container at /app
-COPY . .
+# Copy the rest of the project files into the container
+COPY . /app/
 
-# Expose the port that the application runs on (adjust if needed)
+# Expose port 8000 to the outside world
 EXPOSE 8000
 
-# Command to run the application
+# Run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
